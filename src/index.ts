@@ -11,5 +11,5 @@ story.loadFromData(document.querySelector('tw-storydata'));
 story.init();
 
 const dm = new DisplayManager();
-dm.init(story);
+dm.init(story, event_mgr);
 dm.update();

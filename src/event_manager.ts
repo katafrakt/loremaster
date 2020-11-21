@@ -14,7 +14,6 @@ class EventManager {
   }
 
   emit(event: string, value: any) {
-    console.log('emitting ', event, value);
     this.bus.emit(event, value);
   }
 }

@@ -26,7 +26,7 @@ class Story {
     this.event_mgr.emit('trail', [this.startNode]);
     const passageId = this.startNode;
     this.currentPassage = this.passages.find((e) => e.id == passageId);
-    console.log(this.passages)
+    this.bindEvents();
   }
 
   loadFromData(el: Element) {
@@ -71,6 +71,22 @@ class Story {
 
   private selectAll(el: Element, selector: string): Element[] {
     return Array.from(el.querySelectorAll(selector));
+  }
+
+  private bindEvents() {
+    this.event_mgr.on('passage-change', (targetPassageName: string) => {
+      this.goToPassage(targetPassageName)
+    });
+  }
+
+  private goToPassage(name: string) {
+    const passage: Passage = this.passages.find((e) => e.name == name)
+    if(passage) {
+      this.currentPassage = passage;
+      this.event_mgr.emit('refresh-display', null);
+    } else {
+      console.warn('Unknown passage ' + name);
+    }
   }
 }
 
