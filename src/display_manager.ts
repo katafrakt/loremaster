@@ -26,17 +26,21 @@ class DisplayManager {
 
   attachEventListeners() {
     document.body.addEventListener("click", e => {
-      let target = e.target;
+      let target = e.target as HTMLElement;
 
 			if(target instanceof HTMLElement) {
+        // we might click on something else, such as <em>
+        while(!(target instanceof HTMLAnchorElement) && !(target === null)) {
+          target = target.parentElement as HTMLElement;
+        }
+        if (target == null) return;
+
 				if (
 					target.dataset &&
 					Object.keys(target.dataset).some(key => key == 'passageChange')
 				) {
 					this.event_mgr.emit(`passage-change`, target.dataset.passageChange);
 				}
-
-				target = target.parentNode;
 			}
     });
 

@@ -1,7 +1,15 @@
+import Markdown from './markdown';
+
 class Template {
   render(source: string): string {
-    source = this.renderLinks(source)
+    source = this.renderLinks(source);
+    source = this.renderMarkdown(source);
     return source;
+  }
+
+  private renderMarkdown(source: string): string {
+    const renderer = new Markdown();
+    return renderer.render(source);
   }
 
   // copied from Chapbook
