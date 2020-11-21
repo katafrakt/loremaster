@@ -1,22 +1,35 @@
 import Passage from './story/passage';
-import Node from './interfaces/node';
+import EventManager from './event_manager';
+import StateManager from './state_manager';
+
+interface StoryParams {
+  event_mgr: EventManager,
+  state_mgr: StateManager
+}
 
 class Story {
   name: string;
-  startNode: any;
+  startNode: number;
   creatorVersion: any;
+  passages: Passage[];
+  currentPassage: Passage;
+  event_mgr: EventManager;
+  state_mgr: StateManager;
 
-  constructor() {
-    // TODO: custom scripts and style go here
+  constructor({event_mgr, state_mgr}: StoryParams) {
+    this.event_mgr = event_mgr;
+    this.state_mgr = state_mgr;
   }
 
   init() {
     document.title = this.name;
+    this.event_mgr.emit('trail', [this.startNode]);
+    const passageId = this.startNode;
+    this.currentPassage = this.passages.find((e) => e.id == passageId);
+    console.log(this.passages)
   }
 
-  loadFromData(el: Node) {
-    let passages: any[];
-
+  loadFromData(el: Element) {
     ['name', 'creator', 'ifid', 'options'].forEach(
       attr => (this[attr] = el.getAttribute(attr))
     );
@@ -37,7 +50,7 @@ class Story {
   
     /* Create passages. */
   
-    passages = this.selectAll(el, 'tw-passagedata').map(p => {
+    this.passages = this.selectAll(el, 'tw-passagedata').map(p => {
       let passage = new Passage(
         parseInt(p.getAttribute('pid')), 
         p.getAttribute('name'), 
@@ -56,7 +69,7 @@ class Story {
     });
   }
 
-  private selectAll(el: Node, selector: string): Element[] {
+  private selectAll(el: Element, selector: string): Element[] {
     return Array.from(el.querySelectorAll(selector));
   }
 }

@@ -12,9 +12,15 @@
 					print(`<style>${compilation.assets[css.substr(assets.publicPath.length)].source()}</style>`)
 				)
 			}
-			%>
+      %>
+    <style>
+      tw-storydata {
+        display: none;
+      }
+    </style>
 		</head>
 	<body>
-		<%= storyData %>
+    <%= storyData %>
+    <div id="app"></div>
 	</body>
 </html>

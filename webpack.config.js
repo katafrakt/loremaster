@@ -82,7 +82,8 @@ const config = {
 				);
 
 				story.attributes.name = args.example;
-				story.setStartByName('Start');
+        story.setStartByName('Start');
+        console.log(story);
 
 				return {storyData: story.toHtml(), inline: false};
 			},
