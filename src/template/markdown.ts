@@ -5,27 +5,16 @@ A custom renderer for Marked that:
 
 import marked from 'marked';
 
-class Markdown {
-  renderer: any;
-
-  constructor() {
-    this.renderer = new marked.Renderer();
-
-    Object.assign(this.renderer, {
-      blockquote(src): string {
-        return `<div class="fork">${src}</div>`;
-      },
-    });
+const rendererOverride = {
+  blockquote(src): string {
+    return `<div class="fork">${src}</div>`;
   }
+}
 
+class Markdown {
   render(source: string): string {
-    const options = {
-      renderer: this.renderer,
-      smartypants: true
-    }
-
     // TODO: can we NOT use global?
-    marked.setOptions(options);
+    marked.use({ renderer: rendererOverride });
     return marked(source);
   }
 }
