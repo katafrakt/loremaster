@@ -4,12 +4,27 @@ class Template {
   render(source: string): string {
     source = this.renderLinks(source);
     source = this.renderMarkdown(source);
+    source = this.renderDetails(source);
     return source;
   }
 
   private renderMarkdown(source: string): string {
     const renderer = new Markdown();
     return renderer.render(source);
+  }
+
+  private renderDetails(source: string): string {
+    return source.replace(/\[(.*)\]\{([^\}]*)\}/g, (_, label, text) => {
+      return this.htmlify(
+        'a',
+        {
+          href: 'javascript:void(0)',
+          'data-detail-show': this.renderMarkdown(text),
+          class: 'detail-link'
+        },
+        [label]
+      );
+    });
   }
 
   // copied from Chapbook
@@ -57,7 +72,8 @@ class Template {
       return this.htmlify(
         'a',
         {
-          href: target
+          href: target,
+          target: '_blank'
         },
         [label || target]
       );

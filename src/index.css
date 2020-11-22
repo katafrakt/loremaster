@@ -95,3 +95,20 @@ dd {
   }
 }
 /* end fork styling */
+
+a.detail-link, a.detail-link:visited {
+  text-decoration: none;
+  color: rgb(67, 56, 202);
+}
+
+a.detail-link:hover {
+  color: rgb(103, 92, 223);
+}
+
+a, a:visited {
+  color: rgb(67, 56, 202);
+}
+
+a:hover {
+  color: rgb(103, 92, 223);
+}

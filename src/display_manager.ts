@@ -36,16 +36,23 @@ class DisplayManager {
         if (target == null) return;
 
 				if (
-					target.dataset &&
-					Object.keys(target.dataset).some(key => key == 'passageChange')
-				) {
-					this.event_mgr.emit(`passage-change`, target.dataset.passageChange);
-				}
-			}
+					target.dataset && Object.keys(target.dataset).some(key => key == 'passageChange')) {
+					this.event_mgr.emit('passage-change', target.dataset.passageChange);
+				} else if (
+          target.dataset && Object.keys(target.dataset).some(key => key == 'detailShow')) {
+            this.event_mgr.emit('detail-show', target.dataset.detailShow);
+          }
+        }
     });
 
     this.event_mgr.on('refresh-display', (_) => {
       this.update();
+    });
+
+    this.event_mgr.on('detail-show', (text: string) => {
+      let modal_body = document.getElementById('modal-body');
+      modal_body.innerHTML = text;
+      document.dispatchEvent(new Event('toggleModal'))
     });
   }
 }

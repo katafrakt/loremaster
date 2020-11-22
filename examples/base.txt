@@ -1,9 +1,14 @@
 :: Start
 ## This is a title
 
-This is a simple story with a link on the bottom. 
+This is a [simple story]{Well, it's **simple now**, but will probably grow to be _not-so-simple_ after all!} with a 
+[link]{Links are a great way to enhance your content
+
+And they can be multiline too!} on the bottom. 
 
 > [[link _with italics_]]
 
 :: link _with italics_
 It works! [[Try it again->Start]]
+
+See my homepage: [[link|https://github.com/katafrakt/loremaster]]
