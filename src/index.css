@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* copied from Tulip theme */
+html {
+  font-size: 18px;
+}
+
+h2,
+h3,
+h4,
+h5 {
+  @apply mb-2 text-gray-900;
+}
+
+h1 {
+  @apply text-4xl mt-6;
+}
+
+h2 {
+  @apply text-3xl mt-6;
+}
+
+h3 {
+  @apply text-xl font-bold mt-8;
+}
+
+h4 {
+  @apply text-base font-bold font-sans mt-6;
+}
+
+p {
+  @apply mb-4;
+}
+
+ul {
+  @apply list-disc;
+}
+
+li {
+  @apply list-inside pl-4;
+}
+
+strong {
+  @apply font-bold;
+}
+
+a {
+  @apply underline text-indigo-700;
+}
+
+a:visited {
+  @apply text-black;
+}
+
+code {
+  @apply bg-gray-200 text-sm px-1;
+}
+
+dt {
+  @apply font-bold;
+}
+
+dd {
+  @apply mb-4;
+}
+/* end copied */
+
+#app {
+  margin-top: 2rem;
+}
+
+/* fork styling from chapbook */
+.fork p {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.fork p:hover {
+  background-color: #ddd;
+}
+
+.fork p a {
+  display: block;
+  flex-grow: 1;
+  text-align: center;
+  padding: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
+  .fork p {
+    width: 100%;
+  }
+}
+/* end fork styling */

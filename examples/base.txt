@@ -1,5 +1,9 @@
 :: Start
-This is a simple story with a [[link _with italics_]].
+## This is a title
+
+This is a simple story with a link on the bottom. 
+
+> [[link _with italics_]]
 
 :: link _with italics_
 It works! [[Try it again->Start]]

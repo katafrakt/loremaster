@@ -2,6 +2,7 @@ import Story from './story';
 import EventManager from './event_manager';
 import StateManager from './state_manager';
 import DisplayManager from './display_manager';
+import './index.css';
 
 const event_mgr = new EventManager();
 const state_mgr = new StateManager(event_mgr);

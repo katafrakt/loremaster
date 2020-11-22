@@ -31,13 +31,13 @@ const config = {
 				},
 			},
 			{
-				test: /\.scss$/,
+				test: /\.s?css$/,
 				use: [
 					CssPlugin.loader,
-					{loader: 'css-loader', options: {minimize: isRelease}},
-					'sass-loader',
+          {loader: 'css-loader', options: {}},
+          'postcss-loader',
 				],
-			},
+      },
 			{
 				test: /\.svg$/,
 				use: ['url-loader'],
